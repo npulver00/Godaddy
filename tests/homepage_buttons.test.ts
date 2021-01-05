@@ -1,4 +1,4 @@
-import { GoDaddy } from "./pageObjects/placeholder";
+import { GoDaddy } from "./pageObjects/placeholderNP";
 
 const go = new GoDaddy();
 
@@ -13,7 +13,6 @@ describe("GoDaddy Tabs ", () => {
       });
 
     it("Be able to go to 'Domains' Button page", async () => {
-        jest.setTimeout(15000)
         const domainURL = 'https://www.godaddy.com/domains/domain-name-search';
         const titlePage = 'Domain Name Search | Check Available Domains - GoDaddy';
         await go.openDomainsButton();
@@ -28,7 +27,7 @@ describe("GoDaddy Tabs ", () => {
     });
     it("Be able to go to 'Websites' Button page", async () => {
           
-        const domainURL = 'https://www.godaddy.com/websites/website-builder';
+        const websiteURL = 'https://www.godaddy.com/websites/website-builder';
         const titlePage = 'Website Builder | Create Your Own Website in Minutes GoDaddy';
         await go.openWebsiteButton();
         /* Sleep allows the page to load to beable to get the correct url & title*/
@@ -36,13 +35,13 @@ describe("GoDaddy Tabs ", () => {
         const url =  await go.driver.getCurrentUrl();
         const title =  await go.driver.getTitle();
    
-       expect(url).toEqual(domainURL);
+       expect(url).toEqual(websiteURL);
        expect(title).toEqual(titlePage);
       
     });
   
     it("Be able to go to 'SLL Security ' Button page", async () => {
-        const domainURL = 'https://www.godaddy.com/web-security/ssl-certificate';
+        const sllURL = 'https://www.godaddy.com/web-security/ssl-certificate';
         const titlePage = 'SSL Certificate | Secure Your Data & Transactions - GoDaddy';
         await go.openSecurityButton();
         /* Sleep allows the page to load to beable to get the correct url & title*/
@@ -50,12 +49,12 @@ describe("GoDaddy Tabs ", () => {
         const url =  await go.driver.getCurrentUrl();
         const title =  await go.driver.getTitle();
    
-       expect(url).toEqual(domainURL);
+       expect(url).toEqual(sllURL);
        expect(title).toEqual(titlePage);
     });
 
     it("Be able to go to 'email' Button page", async () => {
-        const domainURL = 'https://www.godaddy.com/email/professional-business-email';
+        const emailURL = 'https://www.godaddy.com/email/professional-business-email';
         const titlePage = 'Professional Business Email | Get a Business Email Account Today - GoDaddy';
         await go.openEmailButton();
         /* Sleep allows the page to load to beable to get the correct url & title*/
@@ -63,12 +62,7 @@ describe("GoDaddy Tabs ", () => {
         const url =  await go.driver.getCurrentUrl();
         const title =  await go.driver.getTitle();
    
-       expect(url).toEqual(domainURL);
+       expect(url).toEqual(emailURL);
        expect(title).toEqual(titlePage);
     });
-   
-
-
-
-
 });

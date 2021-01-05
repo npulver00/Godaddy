@@ -1,4 +1,4 @@
-import { GoDaddy } from "./pageObjects/placeholder";
+import { GoDaddy } from "./pageObjects/placeholderNP";
 
 const go = new GoDaddy();
 
@@ -11,27 +11,25 @@ describe("GoDaddy Tabs ", () => {
     afterAll(async () => {
         await go.quit();
       });
-
-    it("Be able to go to third tab page", async () => {
-        // jest.setTimeout(15000)
-        await go.openThirdTab()
-        console.log("third tab success")
-
-    })
     it("Be able to go to first tab page", async () => {
-        // jest.setTimeout(15000)
-        await go.openfirstTab()
-        console.log("first tab success")
-
-    })
+        const firstURL = "https://www.godaddy.com/?xphp=default";
+        await go.openfirstTab();
+        await go.driver.sleep(500);
+        const url =  await go.driver.getCurrentUrl();
+        expect(url).toEqual(firstURL);
+    });
     it("Be able to go to second page", async () => {
-        // jest.setTimeout(15000)
-       await go.openSecondTab()
-        console.log("Second tab success")
-
-    })
-
-
-
-
+        const secondURL = "https://www.godaddy.com/partners/designers-developers?xphp=pro";
+        await go.openSecondTab();
+        await go.driver.sleep(500);
+        const url =  await go.driver.getCurrentUrl();
+        expect(url).toEqual(secondURL);
+    });
+    it("Be able to go to third tab page", async () => {
+        const thirdURL = "https://www.godaddy.com/partners/domain-investors?xphp=domainer";
+        await go.openThirdTab();
+        await go.driver.sleep(500);
+        const url =  await go.driver.getCurrentUrl();
+        expect(url).toEqual(thirdURL);    
+    });
 });

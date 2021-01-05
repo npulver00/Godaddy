@@ -1,6 +1,31 @@
-import { GoDaddy } from "./pageObjects/placeholder";
+import { GoDaddy } from "./pageObjects/placeHolderNP";
 
 const go = new GoDaddy();
+
+import {
+  Builder,
+  By,
+  Capabilities,
+  until,
+  WebDriver,
+  WebElement,
+
+} from "selenium-webdriver";
+import { elementLocated } from "selenium-webdriver/lib/until";
+const chromedriver = require("chromedriver");
+
+export class login {
+  username: By = By.css("[type='username']");
+  constructor(){}
+
+  async user(): Promise<void>{
+    const user = this.username
+    console.log("user", user)
+  }
+}
+
+
+
 
 
 describe("GoDaddy Login/Logout", () => {
@@ -13,7 +38,9 @@ describe("GoDaddy Login/Logout", () => {
     //   });
 
       it("Be able to login", async () => {
-        //   const username = "P1Group2 ";
+        const signURL =  "https://sso.godaddy.com/?realm=idp&path=%2fproducts&app=account"
+        const username = "P1Group2 ";
+    
         //   const password = "QAP1Group2!";
         // jest.setTimeout(15000)
        await go.openDropdown();
@@ -21,8 +48,13 @@ describe("GoDaddy Login/Logout", () => {
        await go.inputUserName("P1Group2");
        await go.inputPassword("QAP1Group2!");
        await go.clickFinalSignIn();
+       const url =  await go.driver.getCurrentUrl();
+       
 
-    //  make asserations for url and user
+       expect(username).toBeTruthy();
+       expect(url).toEqual(signURL);
+
+
 
       })
 
