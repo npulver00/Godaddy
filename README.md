@@ -1,7 +1,7 @@
 # GoDaddy
 
 This project showcases our collaborative automation efforts to test
-someSite.
+GoDaddy.
 
 Authors:
 
