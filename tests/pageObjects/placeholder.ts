@@ -1,168 +1,54 @@
-import {
-    Builder,
-    By,
-    Capabilities,
-    until,
-    WebDriver,
-    WebElement,
+//placeholder//
 
-} from "selenium-webdriver";
-import { elementLocated } from "selenium-webdriver/lib/until";
-
-const chromedriver = require("chromedriver");
+import { By, until, WebDriver } from "selenium-webdriver";
 
 
-export class GoDaddy {
+
+export class GoDaddy{
     driver: WebDriver;
-    // dropdown: By = By.xpath("//a[contains(@class, 'tray-toggle')]")
-    firstTab: By = By.xpath("//span[text()='Personal & Business']");
-    secondTab: By = By.xpath("//span[text()='Designers & Developers']");
-    thirdTab: By = By.xpath("//span[text()='Domain Investors']");
+    url: string="https://www.godaddy.com/";
+    pageLogo: By = By.className("logo fos");
+    WordPress: By = By.id("id-441966f2-c019-4c8a-8f56-d805393adc87");
+    addCart: By = By.id("id-wordpress-o365-tier1");
+    continueButton: By = By.className("btn btn-purchase continue-button");
+    nothanksLink: By = By.className("btn btn-tertiary-inline no-thanks-button");
+    trashButton: By = By.className("btn btn-link remove");
+    checkoutItems: By = By.className("product-info-no-icon clearfix");
 
-
-//  meetOurMakers: By = By.xpath("//a[contains(@href,'https://www.godaddy.com/make-a-different-future') and @id='id-fac1bc0a-10df-4e4c-bc44-3a1d78449a58']");
-
- domainsButtonHomePage: By = By.xpath("//span[text()='Domains']");
- websitesButtonHomePage: By = By.xpath("//span[text()='Websites']");
- sllSecurityButtonHomePage: By = By.xpath("//span[text()='SSL Security']");
- professEmailButtonHomePage: By = By.xpath("//span[text()='Professional Email']");
- godaddyLogo: By = By.css("#id-b1c657aa-b81f-4909-86bb-e349818d2dfb")
-
-// meetOurMakers: By = By.css("#id-fac1bc0a-10df-4e4c-bc44-3a1d78449a58");
-
-
-    dropdown: By = By.xpath("//span[text()='Sign In']");
-    signIn: By = By.xpath("//a[text()='Sign In']");
-    username: By = By.css("[type='username']");
-    password: By = By.css("[type='password']");
-    finalSignIn: By = By.css("[id='submitBtn']")
-
-    homePage: string = "https://www.godaddy.com/";
-    strUrl: any;
-
-    constructor(driver?: WebDriver) {
-        if (driver) this.driver = driver;
-        else
-            this.driver = new Builder()
-                .withCapabilities(Capabilities.chrome())
-                .build();
+    constructor(driver: WebDriver){
+        this.driver = driver;
     }
 
-    /**
-     * Navigates to the URL 
-     * @param url string
-     */
-    async navigate(): Promise<void> {
-        return this.driver.get(this.homePage);
+    async navigate(){
+        await this.driver.get(this.url);
+        await this.driver.wait(until.elementLocated(this.pageLogo));
+        await this.driver.wait(until.elementIsVisible(await this.driver.findElement(this.pageLogo)));
+    }
 
+    async getText(elementBy: By) {
+        await this.driver.wait(until.elementLocated(elementBy))
+        return await this.driver.findElement(elementBy).getText()
     }
-    async quit(): Promise<void> {
-        return this.driver.quit();
-    }
-// For the Login Start
-    async getElement(elementBy: By): Promise<WebElement> {
+
+    async click(elementBy: By) {
         await this.driver.wait(until.elementLocated(elementBy));
-        let element = await this.driver.findElement(elementBy);
-        await this.driver.wait(until.elementIsVisible(element));
-        return element;
+        return (await this.driver.findElement(elementBy)).click();
     }
 
-    async click(elementBy: By): Promise<void> {
-        let element = await this.getElement(elementBy);
-        await this.driver.wait(until.elementIsEnabled(element));
-        return await element.click();
+    async sendKeys(elementBy: By, keys) {
+        await this.driver.wait(until.elementLocated(elementBy));
+        return await this.driver.findElement(elementBy).sendKeys(keys);
     }
 
-    async openDropdown(): Promise<void> {
-        await this.click(this.dropdown)
-    }
 
-    async selectSignIn(): Promise<void> {
-        await this.click(this.signIn)
-    }
-
-    async setInput(elementBy: By, keys: any): Promise<void> {
-        let input = await this.getElement(elementBy);
-        await this.driver.wait(until.elementIsEnabled(input));
-        await input.clear();
-        return input.sendKeys(keys);
-    }
-
-    async inputUserName(username: string): Promise<void> {
-        let input = await this.getElement(this.username);
-        await this.driver.wait(until.elementIsEnabled(input));
-        return input.sendKeys(username)
-    }
-
-    async inputPassword(password: string): Promise<void> {
-        let input = await this.getElement(this.password);
-        await this.driver.wait(until.elementIsEnabled(input));
-        return input.sendKeys(password);
-    }
-
-    async clickFinalSignIn(): Promise<void> {
-        return await this.click(this.finalSignIn)
-    }
-    // For the Login end 
-
-    //three Tabs Start
-
-
-    async openThirdTab() {
-       return new Promise<void>((resolve, reject) => {
-           
-            if (!this.thirdTab) {
-                throw new Error('The Third tab does not exist, failed')
-            } 
-    
-            setTimeout( () => {
-                resolve(this.click(this.thirdTab));
-            }, 1500);
-        });
-    }
-    async openfirstTab() {
-        return new Promise<void>((resolve, reject) => {
-            
-             if (!this.firstTab) {
-                 throw new Error('The first tab does not exist, failed')
-             } 
-     
-             setTimeout( () => {
-                 resolve(this.click(this.firstTab));
-             }, 1500);
-         });
-     }
-     async openSecondTab() {
-        return new Promise<void>((resolve, reject) => {
-            
-             if (!this.secondTab) {
-                 throw new Error('The Second tab does not exist, failed')
-             } 
-     
-             setTimeout( () => {
-                 resolve(this.click(this.secondTab));
-             }, 1500);
-         });
-     }
-
-
-       //three Tabs end
-
-
-    //    Begin homePage
-      
-    async openDomainsButton(): Promise<void> {
-        await this.click(this.domainsButtonHomePage);    
-     };
-     async openWebsiteButton(): Promise<void> {
-        await this.click(this.websitesButtonHomePage);
-     };
-     async openSecurityButton(): Promise<void> {
-        await this.click(this.sllSecurityButtonHomePage);
-     };
-     async openEmailButton(): Promise<void> {
-          await this.click(this.professEmailButtonHomePage);
-     };
-
-
+    // async getCartList(){
+    //     const cartList: Array<string> = [];
+    //     let list = await this.driver.findElements(this.checkoutItems);
+    //     console.log("List ",list);
+    //     for (let i = 0; i < list.length; i++) {
+    //         await cartList.push(await list[i].getText());
+    // }
+    // return list;
+    // }
 }
+
