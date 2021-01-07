@@ -1,4 +1,5 @@
-typescriptmodule.exports = {
+  module.exports = {
     preset: "ts-jest",
-    testEnvironment: "node",
-  };
+    testEnvironment: "node", 
+    testPathIgnorePatterns: ["/node_modules/", "tests/pageObjects/"],
+    };
