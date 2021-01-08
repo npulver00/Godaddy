@@ -5,71 +5,37 @@ const go = new godaddy();
 describe("left navbar", () => {
 
   beforeEach(async () => {
-      await go.navigate();
+    await go.navigate();
   });
   afterAll(async () => {
-      await go.quit();
-    });
-});
-//need to fix red line error for rest of code//
+    await go.quit();
+  });
 
-// async getElement(elementBy: By): Promise<WebElement> {
-//   await this.driver.wait(until.elementLocated(elementBy));
-//   let element = await this.driver.findElement(elementBy);
-//   await this.driver.wait(until.elementIsVisible(element));
-//   return element;
-// }
+  //Tests//
 
-// async click(elementBy: By): Promise<void> {
-//   let element = await this.getElement(elementBy);
-//   await this.driver.wait(until.elementIsEnabled(element));
-//   return await element.click();
-// }
-async openGenerateDomain(): Promise<void> {
+  it("Be able to navigate to Generate Domain page", async () => {
+    //jest.setTimeout(5000)
+    const generatedomainURL = 'https://www.godaddy.com/domains/domain-name-generator';
+    const namePage = "Domain Name Generator | Search The Best Domain for Free - GoDaddy";
+    await go.opendropdownname();
+    await go.driver.sleep(750);
+    const url = await go.driver.getCurrentUrl();
+    const name = await go.driver.getTitle();
 
-await this.click(this.dropdownname)
-  await this.getElement(this.generatedomain);
-  
-await this.driver.wait(
-  this.click(this.generatedomain));
+    expect(url).toEqual(generatedomainURL);
+    expect(name).toContain(namePage);
+  });
 
-async openWordPressHosting(): Promise<void> {
-  
-await this.click(this.dropdownbuild)
-  await this.getElement(this.wordpresshosting);
-       
-await this.driver.wait(
-  this.click(this.wordpresshosting));
+  it("Be able to navigate to Word Press page", async () => {
+    //jest.setTimeout(5000)
+    const generatedomainURL = 'https://www.godaddy.com/hosting/wordpress-hosting';
+    const namePage = "WordPress Hosting | Fast and Secure with Award-winning Support - GoDaddy";
+    await go.opendropdownbuild();
+    await go.driver.sleep(750);
+    const url = await go.driver.getCurrentUrl();
+    const name = await go.driver.getTitle();
 
-});
-
-//Tests//
-
-it("Be able to navigate to Generate Domain page", async () => {
-  jest.setTimeout(5000)
-  const generatedomainURL = 'https://www.godaddy.com/domains/domain-name-generator';
-  const namePage = 'Domain Names / Search for Domain Names';
-  await go.openGenerateDomain();
-  await go.driver.sleep(500);
-  const url = await go.driver.getCurrentUrl();
-  const name = await go.driver.getName();
-
-expect(url).toEqual(generatedomainURL);
-expect(name).toEqual(namePage);
-
-});
-
-it("Be able to navigate to Word Press page", async () => {
-  jest.setTimeout(5000)
-  const generatedomainURL = 'https://www.godaddy.com/hosting/wordpress-hosting';
-  const namePage = 'Websites & Stores / WordPress Hosting';
-  await go.openWordPressHosting();
-  await go.driver.sleep(500);
-  const url = await go.driver.getCurrentUrl();
-  const name = await go.driver.getName();
-
-expect(url).toEqual(generatedomainURL);
-expect(name).toEqual(namePage);
-
-});
-
+    expect(url).toEqual(generatedomainURL);
+    expect(name).toContain(namePage);
+  });
+})

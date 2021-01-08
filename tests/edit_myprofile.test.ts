@@ -4,6 +4,14 @@ import { godaddy } from "./pageObjects/nbplaceholder";
 const go = new godaddy();
 //manual testing will be conducted as GoDaddy has blocked access to login portion
 
+ /* The blocked out selectors are for my profile (manual testing will be conducted due to issue with blocker*/
+  //qalogo: By = By.xpath("//span[text()='QA']");
+  //accountsetting: By = By.xpath("//a[contains(text(), 'Account Settings')]");
+  //editbutton: By = By.css('[class="btn btn-link btn-sm"]');
+  //organization: By = By.css('[for="organization"]');
+  //editorganization: By = By.css('[name="organization"]');
+  //savebutton: By = By.css('[class="btn btn-primary ux-btn-set-item"]');
+
 describe("edit profile", () => {
 
   beforeEach(async () => {
@@ -13,8 +21,14 @@ describe("edit profile", () => {
     await go.quit();
   });
 
+ // await this.click(this.domainsHomePage)
+ // await this.getElement(this.domainsHomePage);
+     
+//await this.click(this.logo)
+ // await this.getElement(this.logo);
+
   it("", async () => {
-    jest.setTimeout(15000)
+    //jest.setTimeout(15000)
    //go.openDropdown()
    //go.selectSignIn()
 
@@ -22,7 +36,7 @@ describe("edit profile", () => {
   })
 
 
+//})
+
+
 })
-
-
-
