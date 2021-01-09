@@ -13,7 +13,7 @@ describe("left navbar", () => {
 
   //Tests//
 
-  it("Be able to navigate to Generate Domain page", async () => {
+  test("Be able to navigate to Generate Domain page", async () => {
     //jest.setTimeout(5000)
     const generatedomainURL = 'https://www.godaddy.com/domains/domain-name-generator';
     const namePage = "Domain Name Generator | Search The Best Domain for Free - GoDaddy";
@@ -26,7 +26,7 @@ describe("left navbar", () => {
     expect(name).toContain(namePage);
   });
 
-  it("Be able to navigate to Word Press page", async () => {
+  test("Be able to navigate to Word Press page", async () => {
     //jest.setTimeout(5000)
     const generatedomainURL = 'https://www.godaddy.com/hosting/wordpress-hosting';
     const namePage = "WordPress Hosting | Fast and Secure with Award-winning Support - GoDaddy";
