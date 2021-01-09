@@ -22,13 +22,7 @@ describe("edit profile", () => {
   });
 
 
-  it("", async () => {
-    //jest.setTimeout(15000)
-    //go.openDropdown()
-    //go.selectSignIn()
-
-
-  })
+  
 
 
 
