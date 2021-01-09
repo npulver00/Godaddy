@@ -17,3 +17,6 @@ To execute these tests:
 1. Execute the tests: `npm test`
 
 https://github.com/npulver00/Godaddy
+
+Jira:
+https://dmutah.atlassian.net/browse/P1G2-1
