@@ -11,10 +11,8 @@ describe("logo homepage", () => {
     await go.quit();
   });
 
-  //Test//
 
   test("Be able to navigate to homepage after clicking logo", async () => {
-    //jest.setTimeout(5000)
     const generatedomainURL = 'https://www.godaddy.com/';
     const namePage = 'GoDaddy';
     await go.clicklogo();

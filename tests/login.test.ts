@@ -25,9 +25,6 @@ export class login {
 }
 
 
-
-
-
 describe("GoDaddy Login/Logout", () => {
 
     beforeEach(async () => {

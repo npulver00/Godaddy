@@ -1,8 +1,4 @@
-//placeholder//
-
 import { By, until, WebDriver } from "selenium-webdriver";
-
-
 
 export class GoDaddy{
     driver: WebDriver;
@@ -15,7 +11,6 @@ export class GoDaddy{
     continueButton: By = By.className("btn btn-purchase continue-button");
     nothanksLink: By = By.className("btn btn-tertiary-inline no-thanks-button");
     trashButton: By = By.className("uxicon-svg-container");
-    //trashButton: By = By.id("svg-container-trash");
     checkoutitemName: By = By.className("name");
     checkoutItems: By = By.className("group-header ux-card");
     checkoutPage: By = By.className("cart-link menu-item fos");
@@ -48,11 +43,6 @@ export class GoDaddy{
         return await this.driver.findElement(elementBy).sendKeys(keys);
     }
 
-    async addToCart(){
-
-    }
-
-
     async getCartList(){
         const cartList: Array<string> = [];
         await this.driver.wait(until.elementsLocated(this.checkoutitemName));
@@ -62,12 +52,5 @@ export class GoDaddy{
     }
     return cartList;
     }
-
-    // async emptyCart(){
-    //     await this.click(this.emptyCartButton);
-    //     await this.driver.wait(until.alertIsPresent());
-    //     let alert = await this.driver.switchTo().alert();
-    //     await alert.accept();
-    // }
 }
 

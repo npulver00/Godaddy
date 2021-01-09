@@ -55,6 +55,7 @@ export class GoDaddy {
     async quit(): Promise<void> {
         return this.driver.quit();
     };
+
 /* For the Login Start */
     async getElement(elementBy: By): Promise<WebElement> {
         await this.driver.wait(until.elementLocated(elementBy));
