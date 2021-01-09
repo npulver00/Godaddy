@@ -14,10 +14,14 @@ export class GoDaddy{
     webAdd: By = By.id("id-cpanel-o365-tier1")
     continueButton: By = By.className("btn btn-purchase continue-button");
     nothanksLink: By = By.className("btn btn-tertiary-inline no-thanks-button");
-    trashButton: By = By.className("btn btn-link remove");
+    trashButton: By = By.className("uxicon-svg-container");
     //trashButton: By = By.id("svg-container-trash");
-    checkoutItems: By = By.className("product-info-no-icon clearfix");
-    checkoutPage: By = By.className("icon icon-cart-v2");
+    checkoutitemName: By = By.className("name");
+    checkoutItems: By = By.className("group-header ux-card");
+    checkoutPage: By = By.className("cart-link menu-item fos");
+    helpCenterLink: By = By.id("id-1c132f7a-8118-4f1b-8280-900a2e33c47e");
+    helpCenterPage: By = By.className("hero");
+    emptyCartButton: By = By.className("btn btn-link btn-cart-action empty-cart-button");
 
     constructor(driver: WebDriver){
         this.driver = driver;
@@ -49,16 +53,21 @@ export class GoDaddy{
     }
 
 
-    // async getCartList(){
-    //     const cartList: Array<string> = [];
-    //     await this.driver.wait(until.elementsLocated(this.checkoutItems));
-    //     let list = await this.driver.findElements(this.checkoutItems);
-    //     console.log("List ",list);
-    //     for (let i = 0; i < list.length; i++) {
-    //         await cartList.push(await list[i].getText());
-    //         //cartList.push(await (await list[i].getText()).toLowerCase());
-    // }
-    // return list;
+    async getCartList(){
+        const cartList: Array<string> = [];
+        await this.driver.wait(until.elementsLocated(this.checkoutitemName));
+        let list = await this.driver.findElements(this.checkoutitemName);
+        for (let i = 0; i < list.length; i++) {
+            await cartList.push(await list[i].getText());
+    }
+    return cartList;
+    }
+
+    // async emptyCart(){
+    //     await this.click(this.emptyCartButton);
+    //     await this.driver.wait(until.alertIsPresent());
+    //     let alert = await this.driver.switchTo().alert();
+    //     await alert.accept();
     // }
 }
 

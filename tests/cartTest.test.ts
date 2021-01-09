@@ -29,12 +29,12 @@ const driver: WebDriver = new Builder()
       await driver.wait(until.elementLocated(page.nothanksLink));
       await (await driver.findElement(page.nothanksLink)).click();
       
-      // let cartList = await page.getCartList();
-      // console.log("Cart ",cartList);
-      // expect(cartList).toContain("Basic Managed WordPress Website");
+      let cartItemList = await page.getCartList();
+      //console.log("Cart ",cartItemList);
+      expect(cartItemList).toContain("Basic Managed WordPress Websites");
 
-      await driver.wait(until.elementLocated(page.checkoutItems))
-      expect(await (await driver.findElement(page.checkoutItems)).getText()).toContain("Basic Managed WordPress Websites");
+      // await driver.wait(until.elementLocated(page.checkoutItems))
+      // expect(await (await driver.findElement(page.checkoutItems)).getText()).toContain("Basic Managed WordPress Websites");
     });
 
     test("Removes Items from Cart", async()=>{
@@ -50,15 +50,35 @@ const driver: WebDriver = new Builder()
 
       // await driver.wait(until.elementLocated(page.checkoutPage));
       // await (await driver.findElement(page.checkoutPage)).click();
+      
 
       //delete item from cart
       await driver.wait(until.elementLocated(page.trashButton))
       await (await driver.findElement(page.trashButton)).click();
+
+      // let cartItemList = await page.getCartList();
+      // console.log("Cart ",cartItemList);
+      // let getItem = await (await page.driver.findElement(page.checkoutItems)).getText();
+      // console.log("Cart3", getItem);
+      // expect(await (await driver.findElement(page.checkoutItems)).getText()).not.toContain("Basic Managed WordPress Websites");
+
       //test it
       await driver.wait(until.elementLocated(page.checkoutItems))
       expect(await (await driver.findElement(page.checkoutItems)).getText()).not.toContain("Economy Linux Hosting with cPanel");
 
+      //let cartItemList = await page.getCartList();
+      // console.log("Cart ",cartItemList);
+      // expect(cartItemList).not.toContain("Economy Linux Hosting with cPanel");
+
     })
 
+    // test("Empty Cart Button",async()=>{
+      
+    //   let cartlist = await page.getCartList();
+    //   await page.emptyCart();
+    //   let cartItemList = await page.getCartList();
+    //   //console.log("Cart ",cartItemList);
+    //   expect(cartItemList).toContain("Basic Managed WordPress Websites");
+    // })
 
   });
