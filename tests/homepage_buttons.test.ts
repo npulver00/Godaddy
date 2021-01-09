@@ -18,11 +18,11 @@ describe("GoDaddy Tabs ", () => {
         await go.openDomainsButton();
         /* Sleep allows the page to load to beable to get the correct url & title*/
         await go.driver.sleep(500);
-        const url =  await go.driver.getCurrentUrl();
-        const title =  await go.driver.getTitle();
+        const urlDomain =  await go.driver.getCurrentUrl();
+        const titleDomain =  await go.driver.getTitle();
    
-       expect(url).toEqual(domainURL);
-       expect(title).toEqual(titlePage);
+       expect(urlDomain).toEqual(domainURL);
+       expect(titleDomain).toEqual(titlePage);
    
     });
     it("Be able to go to 'Websites' Button page", async () => {
@@ -32,11 +32,11 @@ describe("GoDaddy Tabs ", () => {
         await go.openWebsiteButton();
         /* Sleep allows the page to load to beable to get the correct url & title*/
         await go.driver.sleep(500);
-        const url =  await go.driver.getCurrentUrl();
-        const title =  await go.driver.getTitle();
+        const urlWebsites =  await go.driver.getCurrentUrl();
+        const titleWebsites =  await go.driver.getTitle();
    
-       expect(url).toEqual(websiteURL);
-       expect(title).toEqual(titlePage);
+       expect(urlWebsites).toEqual(websiteURL);
+       expect(titleWebsites).toEqual(titlePage);
       
     });
   
@@ -46,11 +46,11 @@ describe("GoDaddy Tabs ", () => {
         await go.openSecurityButton();
         /* Sleep allows the page to load to beable to get the correct url & title*/
         await go.driver.sleep(500);
-        const url =  await go.driver.getCurrentUrl();
-        const title =  await go.driver.getTitle();
+        const urlSLL =  await go.driver.getCurrentUrl();
+        const titleSLL =  await go.driver.getTitle();
    
-       expect(url).toEqual(sllURL);
-       expect(title).toEqual(titlePage);
+       expect(urlSLL).toEqual(sllURL);
+       expect(titleSLL).toEqual(titlePage);
     });
 
     it("Be able to go to 'email' Button page", async () => {
@@ -59,10 +59,10 @@ describe("GoDaddy Tabs ", () => {
         await go.openEmailButton();
         /* Sleep allows the page to load to beable to get the correct url & title*/
         await go.driver.sleep(500);
-        const url =  await go.driver.getCurrentUrl();
-        const title =  await go.driver.getTitle();
+        const urlEmail =  await go.driver.getCurrentUrl();
+        const titleEmail =  await go.driver.getTitle();
    
-       expect(url).toEqual(emailURL);
-       expect(title).toEqual(titlePage);
+       expect(urlEmail).toContain(emailURL);
+       expect(titleEmail).toContain(titlePage);
     });
 });

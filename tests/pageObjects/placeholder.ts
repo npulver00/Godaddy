@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 //placeholder//
 
 import { By, until, WebDriver } from "selenium-webdriver";
@@ -54,4 +52,3 @@ export class GoDaddy{
     // }
 }
 
->>>>>>> 161f750f64c17405afb2cc527df5150ef799265a

@@ -26,21 +26,21 @@ describe("logo homepage", () => {
 //     return await element.click();
 //   }
 
-async openLogo(): Promise<void> {
+// async openLogo(): Promise<void> {
 
-await this.click(this.dropdownbuild)
-  await this.getElement(this.wordpresshosting);
+// await this.click(this.dropdownbuild)
+//   await this.getElement(this.wordpresshosting);
      
-await this.driver.wait(
-  this.click(this.wordpresshosting));
+// await this.driver.wait(
+//   this.click(this.wordpresshosting));
 
-await this.click(this.logo)
-  await this.getElement(this.logo);
+// await this.click(this.logo)
+//   await this.getElement(this.logo);
 
-await this.driver.wait(
-   this.click(this.logo));
+// await this.driver.wait(
+//    this.click(this.logo));
     
-};
+// };
 
 //Tests//
 
@@ -57,3 +57,20 @@ it("Be able to navigate to homepage after clicking logo", async () => {
   expect(name).toEqual(namePage);
   
   });
+
+
+//   async openLogo(): Promise<void> {
+
+// await this.click(this.dropdownbuild)
+//   await this.getElement(this.wordpresshosting);
+     
+// await this.driver.wait(
+//   this.click(this.wordpresshosting));
+
+// await this.click(this.logo)
+//   await this.getElement(this.logo);
+
+// await this.driver.wait(
+//    this.click(this.logo));
+    
+// };

@@ -48,13 +48,13 @@ async click(elementBy: By): Promise<void> {
     return await element.click();
   }
 
-// async opendropdownname(): Promise<void> {
+async opendropdownname(): Promise<void> {
 
-// await this.click(this.dropdownname)
-//     await this.getElement(this.generatedomain);
+await this.click(this.dropdownname)
+    await this.getElement(this.generatedomain);
 
-// await this.driver.wait(
-//     this.click(this.generatedomain));
+await this.driver.wait(
+    this.click(this.generatedomain));
 
 // await this.click(this.dropdownbuild)
 //   await this.getElement(this.wordpresshosting);
@@ -68,7 +68,6 @@ async click(elementBy: By): Promise<void> {
 // await this.driver.wait(
 //    this.click(this.logo));
     
-// };
-// };
+};
 
 }

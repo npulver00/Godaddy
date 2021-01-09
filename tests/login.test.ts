@@ -33,31 +33,23 @@ describe("GoDaddy Login/Logout", () => {
     beforeEach(async () => {
         await go.navigate();
       });
-    // afterAll(async () => {
-    //     await go.quit();
-    //   });
+    afterAll(async () => {
+        await go.quit();
+      });
 
       it("Be able to login", async () => {
         const signURL =  "https://sso.godaddy.com/?realm=idp&path=%2fproducts&app=account"
         const username = "P1Group2 ";
-    
-        //   const password = "QAP1Group2!";
-        // jest.setTimeout(15000)
+        const password = "QAP1Group2!";
        await go.openDropdown();
        await go.selectSignIn();
-       await go.inputUserName("P1Group2");
-       await go.inputPassword("QAP1Group2!");
+       await go.inputUserName(username);
+       await go.inputPassword(password);
        await go.clickFinalSignIn();
-       const url =  await go.driver.getCurrentUrl();
+       const urlLogin =  await go.driver.getCurrentUrl();
        
-
        expect(username).toBeTruthy();
-       expect(url).toEqual(signURL);
+       expect(urlLogin).toEqual(signURL);
 
-
-
-      })
-
-  
-
-})
+      });
+});
