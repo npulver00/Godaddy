@@ -1,25 +1,39 @@
-import { Builder, By, Capabilities } from "selenium-webdriver"
+import { Builder, By, Capabilities, until, WebDriver } from "selenium-webdriver"
+import { GoDaddy } from './pageObjects/placeholderII';
 
 const chromedriver = require('chromedriver');
 
-const driver = new Builder().withCapabilities(Capabilities.chrome()).build();
+const driver: WebDriver = new Builder().withCapabilities(Capabilities.chrome()).build();
 
-test("it should run search operation", async () => {
-    await (await driver).get('https://godaddy.com');
-    const searchBar: By = By.css('input[name="domainToCheck"]');
-    // const searchButton: By = By.css('.searchText');
-    const searchButton: By = By.css('button.btn.btn-search.bg-teal-550');
-    await (await driver).findElement(searchBar).sendKeys('hyrte.com');
-    await (await (await driver).findElement(searchButton)).click();
-    const domainCheck: By = By.css('div.ms0.mb-0.mb-lg-3');
-    expect(await(await (await driver).findElement(domainCheck)).getText()).toBe('Your domain is available!');
+const searchDomain = new GoDaddy(driver);
 
-    const addToCart: By = By.css('button.btn.btn-primary.teal-button.cart-button');
-    await (await (await driver).findElement(addToCart)).click();
-    const continueToCart: By = By.css('button.btn.btn-primary.d-flex.align-items-center.teal-button.cart-button');
-    await (await (await driver).findElement(continueToCart)).click();
-    const resultItem: By = By.css('h3.font-primary-bold');
-    expect(await(await (await driver).findElement(resultItem)).getText()).toBe('Full Domain Privacy & Protection');
-    // const addText: By = By.css
-    // const searchButton: By = By.css[]
+describe('Godaddy site', () => {
+    beforeEach(async () => {
+        jest.setTimeout(20000);
+        await searchDomain.navigate();
+    });
+    afterAll(async () => {
+        await (await driver).quit();
+    });
+
+    it('it should search domain name and add product to cart', async () => {
+        await (await driver).wait(until.elementLocated(searchDomain.searchBar));
+        await (await driver).findElement(searchDomain.searchBar).sendKeys('hyrte.com');
+    
+        await (await driver).wait(until.elementLocated(searchDomain.searchButton));
+        await (await (await driver).findElement(searchDomain.searchButton)).click();
+    
+        await (await driver).wait(until.elementLocated(searchDomain.domainCheck));
+        expect(await(await (await driver).findElement(searchDomain.domainCheck)).getText()).toBe('Your domain is available!');
+        // expect(await(await (await driver).findElement(searchDomain.domainCheck)).getText()).toBe('hyrte.com is available');
+
+        console.log(await(await driver.findElement(searchDomain.domainCheck)).getText());
+
+        await (await driver).wait(until.elementLocated(searchDomain.addToCart));
+        await (await (await driver).findElement(searchDomain.addToCart)).click();
+
+        await (await driver).wait(until.elementLocated(searchDomain.continueToCart));
+        await (await (await driver).findElement(searchDomain.continueToCart)).click();
+
+    });
 });
